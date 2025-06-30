@@ -20,8 +20,7 @@
 
 ## 🚀 Live Demo
 
-👉 [https://shareandcare.netlify.app](https://shareandcare.netlify.app)  
-
+👉 https://shareanddcare.netlify.app/
 
 ---
 

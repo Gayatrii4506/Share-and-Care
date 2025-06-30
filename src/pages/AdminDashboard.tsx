@@ -16,6 +16,7 @@ import {
   Title,
 } from 'chart.js';
 import { ChartPieDonut } from '../components/UI/ChartPieDonut';
+import { LogOut } from 'lucide-react';
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title);
 
@@ -63,7 +64,7 @@ interface UserProfile {
 const DONATION_STATUSES = ['requested', 'verified', 'picked', 'delivered'];
 
 export const AdminDashboard: React.FC = () => {
-  const { user, profile, loading } = useAuth();
+  const { user, profile, loading, signOut } = useAuth();
   const [donations, setDonations] = useState<Donation[]>([]);
   const [ngos, setNgos] = useState<NGO[]>([]);
   const [volunteers, setVolunteers] = useState<Volunteer[]>([]);
@@ -78,6 +79,7 @@ export const AdminDashboard: React.FC = () => {
   });
   const [users, setUsers] = useState<UserProfile[]>([]);
   const [userLoading, setUserLoading] = useState(false);
+  const [isSigningOut, setIsSigningOut] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -237,6 +239,32 @@ export const AdminDashboard: React.FC = () => {
     setUserLoading(false);
   };
 
+  const handleSignOut = async () => {
+    let timeoutId: NodeJS.Timeout | null = null;
+    try {
+      console.log('AdminDashboard: Signing out...');
+      setIsSigningOut(true);
+      timeoutId = setTimeout(() => {
+        setIsSigningOut(false);
+        console.error('AdminDashboard: Sign out timed out after 5 seconds');
+        alert('Sign out is taking too long. Please refresh the page.');
+      }, 5000);
+      await signOut();
+      console.log('AdminDashboard: Sign out completed successfully');
+      navigate('/');
+      setTimeout(() => {
+        console.log('AdminDashboard: After signOut, user:', user);
+        console.log('AdminDashboard: After signOut, profile:', profile);
+      }, 500);
+    } catch (error) {
+      console.error('AdminDashboard: Error signing out:', error);
+      alert('An error occurred during sign out. Please try again.');
+    } finally {
+      if (timeoutId) clearTimeout(timeoutId);
+      setIsSigningOut(false);
+    }
+  };
+
   // Prepare sorted pie chart data for shadcn/ui donut chart with pastel colors
   const pieChartData = Object.entries(analytics.categoryCounts)
     .map(([name, value], i) => ({
@@ -268,7 +296,13 @@ export const AdminDashboard: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-cream to-white py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold mb-8 text-slate">Admin Dashboard</h1>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+          <h1 className="text-3xl font-bold text-slate">Admin Dashboard</h1>
+          <Button variant="outline" onClick={handleSignOut} disabled={isSigningOut} className="mt-4 md:mt-0 flex items-center">
+            <LogOut className="h-4 w-4 mr-2" />
+            {isSigningOut ? 'Signing Out...' : 'Sign Out'}
+          </Button>
+        </div>
 
         {/* Analytics Section */}
         <Card className="mb-8">

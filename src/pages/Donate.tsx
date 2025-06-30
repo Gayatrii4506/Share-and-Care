@@ -186,8 +186,8 @@ export const Donate: React.FC = () => {
                   onClick={() => setDonationData({ ...donationData, category: category.value })}
                   className={`p-6 rounded-2xl border-2 transition-all text-left ${
                     donationData.category === category.value
-                      ? 'border-orange bg-orange/5'
-                      : 'border-gray-200 hover:border-orange/50'
+                      ? 'border-primary bg-primary/5'
+                      : 'border-gray-200 hover:border-primary/50'
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -218,7 +218,7 @@ export const Donate: React.FC = () => {
                 type="text"
                 value={donationData.itemName}
                 onChange={(e) => setDonationData({ ...donationData, itemName: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-4 focus:ring-orange/25 focus:border-orange"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-4 focus:ring-primary/25 focus:border-primary"
                 placeholder="e.g., Winter jacket, Rice bags, Mathematics textbook"
                 required
               />
@@ -232,7 +232,7 @@ export const Donate: React.FC = () => {
                   min="1"
                   value={donationData.quantity}
                   onChange={(e) => setDonationData({ ...donationData, quantity: parseInt(e.target.value) || 1 })}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-4 focus:ring-orange/25 focus:border-orange"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-4 focus:ring-primary/25 focus:border-primary"
                 />
               </div>
 
@@ -241,7 +241,7 @@ export const Donate: React.FC = () => {
                 <select
                   value={donationData.condition}
                   onChange={(e) => setDonationData({ ...donationData, condition: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-4 focus:ring-orange/25 focus:border-orange"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-4 focus:ring-primary/25 focus:border-primary"
                 >
                   <option value="excellent">Excellent</option>
                   <option value="good">Good</option>
@@ -256,14 +256,14 @@ export const Donate: React.FC = () => {
                 rows={4}
                 value={donationData.description}
                 onChange={(e) => setDonationData({ ...donationData, description: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-4 focus:ring-orange/25 focus:border-orange"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-4 focus:ring-primary/25 focus:border-primary"
                 placeholder="Provide additional details about the item, size, color, etc."
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-slate mb-2">Photo (Optional)</label>
-              <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-orange transition-colors">
+              <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-primary transition-colors">
                 <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                 <input
                   type="file"
@@ -277,7 +277,7 @@ export const Donate: React.FC = () => {
                 />
                 <label
                   htmlFor="image-upload"
-                  className="cursor-pointer text-orange hover:text-orange-light"
+                  className="cursor-pointer text-primary hover:text-primary-light"
                 >
                   {donationData.imageFile ? donationData.imageFile.name : 'Click to upload a photo'}
                 </label>
@@ -295,13 +295,13 @@ export const Donate: React.FC = () => {
               <div
                 className={`p-6 rounded-2xl border-2 cursor-pointer transition-all ${
                   donationData.pickupOption
-                    ? 'border-orange bg-orange/5'
-                    : 'border-gray-200 hover:border-orange/50'
+                    ? 'border-primary bg-primary/5'
+                    : 'border-gray-200 hover:border-primary/50'
                 }`}
                 onClick={() => setDonationData({ ...donationData, pickupOption: true })}
               >
                 <div className="flex items-center space-x-4">
-                  <div className="p-3 bg-green rounded-xl">
+                  <div className="p-3 bg-secondary rounded-xl">
                     <Package className="h-6 w-6 text-white" />
                   </div>
                   <div className="flex-1">
@@ -309,7 +309,7 @@ export const Donate: React.FC = () => {
                     <p className="text-sm text-slate-light">Our volunteers will collect the item from you</p>
                   </div>
                   {donationData.pickupOption && (
-                    <Check className="h-6 w-6 text-orange" />
+                    <Check className="h-6 w-6 text-primary" />
                   )}
                 </div>
               </div>
@@ -317,8 +317,8 @@ export const Donate: React.FC = () => {
               <div
                 className={`p-6 rounded-2xl border-2 cursor-pointer transition-all ${
                   !donationData.pickupOption
-                    ? 'border-orange bg-orange/5'
-                    : 'border-gray-200 hover:border-orange/50'
+                    ? 'border-primary bg-primary/5'
+                    : 'border-gray-200 hover:border-primary/50'
                 }`}
                 onClick={() => setDonationData({ ...donationData, pickupOption: false })}
               >
@@ -331,7 +331,7 @@ export const Donate: React.FC = () => {
                     <p className="text-sm text-slate-light">Bring your donation to a nearby collection center</p>
                   </div>
                   {!donationData.pickupOption && (
-                    <Check className="h-6 w-6 text-orange" />
+                    <Check className="h-6 w-6 text-primary" />
                   )}
                 </div>
               </div>
@@ -385,8 +385,8 @@ export const Donate: React.FC = () => {
               </div>
             </Card>
 
-            <div className="bg-green/10 p-4 rounded-xl">
-              <p className="text-green font-medium text-center">
+            <div className="bg-secondary/10 p-4 rounded-xl">
+              <p className="text-secondary font-medium text-center">
                 🎉 You'll earn 10 CarePoints for this donation!
               </p>
             </div>
@@ -431,7 +431,7 @@ export const Donate: React.FC = () => {
         <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
           <Card>
             <div className="text-center mb-6">
-              <div className="p-4 bg-orange rounded-full inline-block mb-4">
+              <div className="p-4 bg-primary rounded-full inline-block mb-4">
                 <User className="h-8 w-8 text-white" />
               </div>
               <h2 className="text-2xl font-bold text-slate mb-2">Complete Your Profile</h2>
@@ -447,7 +447,7 @@ export const Donate: React.FC = () => {
                     type="text"
                     value={profileSetupData.fullName}
                     onChange={(e) => setProfileSetupData({ ...profileSetupData, fullName: e.target.value })}
-                    className="pl-10 w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-4 focus:ring-orange/25 focus:border-orange"
+                    className="pl-10 w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-4 focus:ring-primary/25 focus:border-primary"
                     placeholder="Enter your full name"
                     required
                   />
@@ -472,7 +472,7 @@ export const Donate: React.FC = () => {
                 <select
                   value={profileSetupData.role}
                   onChange={(e) => setProfileSetupData({ ...profileSetupData, role: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-4 focus:ring-orange/25 focus:border-orange"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-4 focus:ring-primary/25 focus:border-primary"
                 >
                   <option value="donor">Donor - I want to donate items</option>
                   <option value="volunteer">Volunteer - I want to help deliver donations</option>
@@ -522,7 +522,7 @@ export const Donate: React.FC = () => {
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center border-2 ${
                       currentStep >= step.id
-                        ? 'bg-orange border-orange text-white'
+                        ? 'bg-primary border-primary text-white'
                         : 'border-gray-300 text-gray-500'
                     }`}
                   >
@@ -534,7 +534,7 @@ export const Donate: React.FC = () => {
                   </div>
                   <div className="ml-3 hidden sm:block">
                     <p className={`text-sm font-medium ${
-                      currentStep >= step.id ? 'text-orange' : 'text-gray-500'
+                      currentStep >= step.id ? 'text-primary' : 'text-gray-500'
                     }`}>
                       {step.title}
                     </p>
@@ -544,7 +544,7 @@ export const Donate: React.FC = () => {
                 {index < steps.length - 1 && (
                   <div
                     className={`flex-1 h-0.5 mx-4 ${
-                      currentStep > step.id ? 'bg-orange' : 'bg-gray-300'
+                      currentStep > step.id ? 'bg-primary' : 'bg-gray-300'
                     }`}
                   />
                 )}

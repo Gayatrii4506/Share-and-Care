@@ -249,6 +249,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signOut = async () => {
     try {
+      console.log('Starting sign out process...');
       const { error } = await supabase.auth.signOut();
       
       // Handle session not found errors gracefully - treat as successful signout
@@ -263,13 +264,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
       
       // Always clear local state regardless of server response
+      console.log('Clearing local state...');
       setSession(null);
       setUser(null);
       setProfile(null);
+      console.log('Local state cleared successfully');
       toast.success('Signed out successfully!');
     } catch (error: any) {
       console.warn('Unexpected sign out error:', error.message);
       // Ensure clean state even if sign out fails completely
+      console.log('Clearing local state due to error...');
       setSession(null);
       setUser(null);
       setProfile(null);

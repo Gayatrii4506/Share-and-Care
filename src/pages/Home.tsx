@@ -46,14 +46,14 @@ const Tooltip: React.FC<{ children: React.ReactNode; message: string; position?:
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
-          className={`absolute z-50 px-3 py-2 text-sm text-white bg-slate-800 rounded-lg shadow-lg whitespace-nowrap ${positionClasses[position]}`}
+          className={`absolute z-50 px-4 py-3 text-sm text-slate-800 bg-white border-2 border-orange rounded-lg shadow-xl whitespace-nowrap ${positionClasses[position]}`}
         >
           {message}
-          <div className={`absolute w-2 h-2 bg-slate-800 transform rotate-45 ${
-            position === 'top' ? 'top-full left-1/2 -translate-x-1/2 -mt-1' :
-            position === 'bottom' ? 'bottom-full left-1/2 -translate-x-1/2 -mb-1' :
-            position === 'left' ? 'left-full top-1/2 -translate-y-1/2 -ml-1' :
-            'right-full top-1/2 -translate-y-1/2 -mr-1'
+          <div className={`absolute w-3 h-3 bg-white border-2 border-orange transform rotate-45 ${
+            position === 'top' ? 'top-full left-1/2 -translate-x-1/2 -mt-1.5' :
+            position === 'bottom' ? 'bottom-full left-1/2 -translate-x-1/2 -mb-1.5' :
+            position === 'left' ? 'left-full top-1/2 -translate-y-1/2 -ml-1.5' :
+            'right-full top-1/2 -translate-y-1/2 -mr-1.5'
           }`} />
         </motion.div>
       )}
@@ -156,6 +156,23 @@ export const Home: React.FC = () => {
                   Learn How It Works
                 </Button>
               </Link>
+            </div>
+
+            {/* Sign In/Sign Up Section */}
+            <div className="mt-8 pt-8 border-t border-orange/20">
+              <p className="text-slate-light mb-4">Already part of our community?</p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Link to="/login">
+                  <Button variant="outline" size="md" className="border-orange text-orange hover:bg-orange hover:text-white">
+                    Sign In
+                  </Button>
+                </Link>
+                <Link to="/signup">
+                  <Button size="md" className="bg-orange hover:bg-orange-light">
+                    Sign Up
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -351,7 +368,7 @@ export const Home: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/signup">
-                <Button variant="outline" size="lg" className="bg-white text-orange border-white hover:bg-gray-100">
+                <Button variant="outline" size="lg" className="bg-white text-orange border-white hover:bg-gray-100">0
                   Join Our Community
                 </Button>
               </Link>

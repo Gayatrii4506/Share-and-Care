@@ -11,6 +11,8 @@ import { Donate } from './pages/Donate';
 import { Dashboard } from './pages/Dashboard';
 import { HowItWorks } from './pages/HowItWorks';
 import { AdminDashboard } from './pages/AdminDashboard';
+import { Impact } from './pages/Impact';
+import { Volunteer } from './pages/Volunteer';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/how-it-works" element={<HowItWorks />} />
               <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/impact" element={<Impact />} />
+              <Route path="/volunteer" element={<Volunteer />} />
             </Routes>
           </main>
           <Footer />

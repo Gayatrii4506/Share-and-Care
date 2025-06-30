@@ -50,6 +50,7 @@ export const Dashboard: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const { user, profile, signOut, loading: authLoading } = useAuth();
   const navigate = useNavigate();
+  const [isSigningOut, setIsSigningOut] = useState(false);
 
   // Handle authentication redirects in useEffect
   useEffect(() => {
@@ -188,11 +189,28 @@ export const Dashboard: React.FC = () => {
   };
 
   const handleSignOut = async () => {
+    let timeoutId: NodeJS.Timeout | null = null;
     try {
+      console.log('Dashboard: Signing out...');
+      setIsSigningOut(true);
+      timeoutId = setTimeout(() => {
+        setIsSigningOut(false);
+        console.error('Dashboard: Sign out timed out after 5 seconds');
+        alert('Sign out is taking too long. Please refresh the page.');
+      }, 5000);
       await signOut();
+      console.log('Dashboard: Sign out completed successfully');
       navigate('/');
+      setTimeout(() => {
+        console.log('Dashboard: After signOut, user:', user);
+        console.log('Dashboard: After signOut, profile:', profile);
+      }, 500);
     } catch (error) {
-      console.error('Error signing out:', error);
+      console.error('Dashboard: Error signing out:', error);
+      alert('An error occurred during sign out. Please try again.');
+    } finally {
+      if (timeoutId) clearTimeout(timeoutId);
+      setIsSigningOut(false);
     }
   };
 
@@ -317,9 +335,9 @@ export const Dashboard: React.FC = () => {
               <div className="px-4 py-2 rounded-xl bg-slate text-white font-medium capitalize">
                 {profile.role}
               </div>
-              <Button variant="outline" onClick={handleSignOut}>
+              <Button variant="outline" onClick={handleSignOut} disabled={isSigningOut}>
                 <LogOut className="h-4 w-4 mr-2" />
-                Sign Out
+                {isSigningOut ? 'Signing Out...' : 'Sign Out'}
               </Button>
             </div>
           </motion.div>

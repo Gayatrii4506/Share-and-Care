@@ -51,7 +51,7 @@ export const Signup: React.FC = () => {
           navigate('/dashboard');
         }
       } else {
-        navigate('/dashboard');
+      navigate('/dashboard');
       }
     } catch (error) {
       console.error(error);

@@ -13,6 +13,7 @@
     "@headlessui/react": "^1.7.17",
     "@supabase/supabase-js": "^2.38.5",
     "chart.js": "^4.5.0",
+    "elevenlabs": "^1.59.0",
     "framer-motion": "^10.16.16",
     "leaflet": "^1.9.4",
     "leaflet.heat": "^0.2.0",
